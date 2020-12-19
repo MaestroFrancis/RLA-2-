@@ -1,0 +1,120 @@
+/*
+This script showcases fundemental player movement on a grid. 
+(Gameplay works better on an actual console due to system("cls"), which 
+does not work in an online IDE.
+*/
+#include <iostream>
+
+struct GridObject //prints where characters may be positioned on the grid
+{
+	int x;
+	int y;
+};
+
+struct Grid //prints out the entire grid 
+{
+	int totalX;
+	int totalY;
+
+	void RenderMap(GridObject player, GridObject treasure) //creates the grid
+	{
+		for (int col = 0; col < totalY; col++)
+		{
+			for (int row = 0; row < totalX; row++)
+			{
+				if (player.x == row && player.y == col) //player position
+				{
+					std::cout << "P";
+				}
+				else if (treasure.x == row && treasure.y == col) //treasure position
+				{
+					std::cout << "X";
+				}
+				else
+				{
+					std::cout << "."; //empty
+				}
+			}
+
+
+			std::cout << "\n";
+		}
+	}
+};
+
+struct PlayerInput
+{
+	std::string direction;
+
+	char GetInput()
+	{
+		std::cout << "Input direction! (W A S D):\n";
+		std::cin >> direction;
+
+		if (direction.length() != 1)
+		{
+			std::cout << "You are unable to travel that far!\n";
+		}
+		else
+		{
+			return direction[0];
+		}
+
+
+
+	}
+};
+
+int main()
+{
+	Grid grid;
+	grid.totalX = 15;
+	grid.totalY = 15;
+
+	GridObject player;
+	player.x = 3;
+	player.y = 6;
+
+	GridObject treasure;
+	treasure.x = 4;
+	treasure.y = 2;
+
+	std::cout << "Find the treasure!\n";
+
+	PlayerInput playerInput;
+	char input = '0';
+
+	while (input != 'q')
+	{
+		grid.RenderMap(player, treasure);
+
+		input = playerInput.GetInput();
+
+		system("cls");
+
+		switch (input)
+		{
+		case 'w':
+			player.y -= 1;
+			break;
+		case 'd':
+			player.x += 1;
+			break;
+		case 's':
+			player.y += 1;
+			break;
+		case 'a':
+			player.x -= 1;
+			break;
+		default:
+			return 0;
+		}
+
+		if (player.x == treasure.x && player.y == treasure.y)
+		{
+			system("cls"); // may not work if cls is not a standard part of your IDE
+			std::cout << "You have found the treasure!";
+			return 0;
+		}
+	}
+}
