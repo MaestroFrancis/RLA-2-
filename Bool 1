@@ -1,0 +1,45 @@
+/*
+	This application showcases my usage of bool types.
+*/
+
+#include <iostream>
+#include <string>
+
+bool isFive(int num) //function checks if the user inputs any number other than 5.
+{
+	bool status = true;
+	if (num != 5) //if the user does not put a 5...
+	{
+		status = false; 
+	}
+	return status;
+}
+
+int main()
+{
+	
+	int NUM;
+
+	std::cout << "Hey user, let's play a game. Enter any number other than 5!\n";
+	std::cin >> NUM;
+
+	for (int i = 0; i < 4; i++) //repeats 5 times
+	{
+		if (isFive(NUM) == false)
+		{
+			std::cout << "Hey, you weren't supposed to enter 5! Try again!\n";
+			std::cin >> NUM;
+		}
+		else
+		{
+			std::cout << "Haha, you just lost the game!";
+		}
+    
+	}
+
+
+	std::cout << "Wow, you're more patient than I am. You win."; //only if the user does not input the number five for 5 iterations. 
+
+	return 0;
+
+}
