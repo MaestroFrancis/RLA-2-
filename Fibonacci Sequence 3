@@ -1,0 +1,37 @@
+/*
+This application showcases how I can learn a new theorem/category of math, and apply it to programming.
+*/
+
+#include <iostream>
+
+
+int main()
+{
+	int number;
+	int t1 = 0;
+	int t2 = 1;
+	int nextTerm = 0;
+
+	std::cout << "Fibonacci Sequence: enter the number of terms you would want outputed!\n";
+	std::cin >> number;
+
+	std::cout << "Fibonacci Sequence up to " << number << ".\n";
+	std::cout << t1 << " ";
+	std::cout << t2 << " ";
+
+
+	for (int i = 0; i < number; i++)
+	{
+		nextTerm = t1 + t2;
+
+		std::cout << nextTerm << " ";
+
+		t1 = t2;
+		t2 = nextTerm;
+
+	}
+
+	std::cout << "\n---------------------------------------------------";
+
+	
+}
