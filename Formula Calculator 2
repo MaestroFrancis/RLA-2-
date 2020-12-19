@@ -1,0 +1,150 @@
+/*
+	RLA Mini Project 2
+	This application showcases my knowledge of how mathematics and programming can be used interchangably.
+*/
+#include <iostream>
+#include <cmath>
+#include <math.h>
+#include <vector>
+
+double average() //function gets the average of 2-4 numbers inputted by the user
+{
+	double s;
+	double p;
+	double q;
+	double r;
+
+	double mean = 0.0;
+
+	std::vector<double> nums = {};
+	
+	std::cout << "--- AVERAGE/MEAN CALCULATOR (limited to four numbers---\n\n";
+
+	std::cout << "Enter the first number:\n";
+	std::cin >> s;
+
+	nums.push_back(s);
+
+	std::cout << "Enter the second number:\n";
+	std::cin >> p;
+
+	nums.push_back(p);
+
+	
+	std::cout << "Do you want to add more numbers? y/n\n";
+	char response;
+	std::cin >> response;
+	if (!(response != 'Y' && response != 'y'))
+	{
+		std::cout << "Enter the third number:\n";
+		std::cin >> q;
+		nums.push_back(q);
+
+		std::cout << "Do you want to add another number? y/n\n";
+		std::cin >> response;
+		if (!(response != 'Y' && response != 'y'))
+		{
+			std::cout << "Enter the forth number:\n";
+			std::cin >> r;
+			nums.push_back(r);
+			mean = ((s + p + q + r) / nums.size());
+			std::cout << "The average of those four numbers is " << mean << ".\n";
+
+		}
+		else
+		{
+			mean = ((s + p + q) / nums.size());
+			std::cout << "The average of those three numbers is " << mean << ".\n";
+
+		}
+	}
+	else
+	{
+		mean = ((s + p) / nums.size());
+		std::cout << "The average is " << mean << ".\n";
+	}
+	return 0;
+	
+}
+double pT() //function gets the hypotenuse by calculating values A and B.
+{
+	double a;
+	double b;
+	double c;
+
+	std::cout << "--- PYTHAGORAS THEOREM CALCULATOR ---\n\n";
+
+	std::cout << "Enter a value for a:\n";
+	std::cin >> a;
+	std::cout << "Enter a value for b:\n";
+	std::cin >> b;
+
+	c = sqrt((pow(a, 2) + (pow(b, 2))));
+
+	std::cout << "The hypotenuse (or c) is: " << c << ".";
+
+	return 0;
+}
+
+int fibSeq() //function asks the user to put the amount of terms they want in the sequence; then, they input that amount.
+{
+	int number;
+	int t1 = 0;
+	int t2 = 1;
+	int nextTerm = 0;
+
+	std::cout << "Fibonacci Sequence: enter the number of terms you would want outputed!\n";
+	std::cin >> number;
+
+	std::cout << "Fibonacci Sequence up to " << number << ".\n";
+  
+	std::cout << t1 << " "; //0
+	std::cout << t2 << " "; //1
+  //the first two numbers in the sequence ^
+
+
+	for (int i = 0; i < number; i++)
+	{
+		nextTerm = t1 + t2;
+
+		std::cout << nextTerm << " ";
+
+		t1 = t2;
+		t2 = nextTerm;
+
+	}
+
+	std::cout << "\n---------------------------------------------------";
+	
+	return 0;
+}
+int main()
+{
+
+	std::cout << "--- FORMULA CALCULTOR ---\n\n";
+	std::cout << "Pick from a selection of formulas!\n";
+	std::cout << "1) Pythagoras Theorem\n";
+	std::cout << "2) Average\n";
+	std::cout << "3) Fibonacci Sequence\n";
+
+	int choice;
+
+	std::cin >> choice;
+
+	switch (choice)
+	{
+	case 0:
+		return 0;
+	case 1:
+		pT();
+		break;
+	case 2:
+		average();
+		break;
+	case 3:
+		fibSeq();
+		break;
+	}
+
+
+}
