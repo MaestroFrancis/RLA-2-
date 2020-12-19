@@ -1,0 +1,138 @@
+// This program showcases my knowledge of classes, objects, and vectors.
+
+#include <iostream>
+#include <vector>
+#include <cstdlib>
+#include <ctime>
+#include<windows.h>
+
+#include "Vend.h"
+
+class Vend
+{
+public: //public member variables
+
+    int choice;
+    
+    std::vector<double> order;
+
+    double total = 0.0;
+    
+    
+
+public: //public member methods
+
+    void mainMenu()
+    {
+        std::cout << "0: Leave\n1: Pepsi 1.19\n2: Coke [SOLD OUT]\n";
+        std::cout << "3: Canada Dry 1.19\n4: Granola Bar 1.99\n5: Chips 1.99\n";
+        std::cout << "What's your choice?\n";
+    }
+
+    int option() 
+    {
+        std::cin >> choice;
+
+        switch (choice)
+        {
+
+        case 0: //Leave vending machine
+            std::cout << "You are now leaving the vending machine...";
+            return 0;
+            break;
+        case 1: //Pepsi
+            order.push_back(1.19);
+
+            break;
+        case 2: //Sold out Coke
+            std::cout << "It's sold out!";
+            
+            break;
+        case 3: //Root Beer
+            order.push_back(1.19);
+            break;
+        case 4: //7UP
+            order.push_back(1.99);
+            break;
+        case 5: // Canada Dry
+            order.push_back(1.99);
+            break;
+        default:
+            std::cout << "Invalid option!";
+            return 0; 
+            break;
+        }
+
+        total = 0.0;
+        for (int i = 0; i < order.size(); i++) //loop over vector; this is how the total is tallied up
+
+        {
+            total+=order[i];
+        }
+
+
+
+    }
+
+    void printTotal()
+    {
+        std::cout << "Your current total is " << total << ".\n";
+    }
+
+    double purchase()
+    {
+        std::cout << "Your final total is " << total << ". Please input your money!\n";
+        double money;
+        std::cin >> money;
+
+        if (money >= total && money <= 3.20) //if the user gives the right amount of money (between the total price and the amount of money they have)
+        {
+            std::cout << "Purchase successful. Your change is $" << money - total << ". Have a good day.\n";
+            return 0;
+        }
+        else
+        {
+            std::cout << "Purchase declined.\n";
+        }
+    }
+};
+
+int main()
+{
+    Vend vend;
+
+    std::cout << "You are now walking towards a vending machine, carrying $3.20.\n";
+    std::cout << "As you approach the machine, a voice can be heard from your destination...\n\n";
+
+    std::cout << "Welcome to our vending machine! Which item would you like?\n";
+
+    
+    
+    for (int selection = 0; selection < 3; selection++)
+    {   
+        vend.mainMenu();
+        vend.option();
+        vend.printTotal();
+        selection++;
+        if (selection == 1)
+        {
+            std::cout << "You have selected one item. Do you want to pick another item? Y/N \n";
+            char response;
+            std::cin >> response;
+            
+            if (!(response != 'Y' && response != 'y'))
+            {
+                std::cout << "Pick another item.\n";
+            }
+            else
+            {
+                vend.purchase();
+                return 0;
+            }
+        }       
+    }
+    vend.purchase();
+    
+}
+
+
