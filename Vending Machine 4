@@ -4,7 +4,7 @@
 #include <vector>
 #include <cstdlib>
 #include <ctime>
-#include<windows.h> //not neccessary; remove the library if an error persists
+#include <windows.h> //not neccessary; remove the library if an error persists
 
 
 
